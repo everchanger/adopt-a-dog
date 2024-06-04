@@ -3,7 +3,7 @@ export type Dog = {
   age: number
   description: string
   image: string
-  race: string
+  breed: string
   gender: 'male' | 'female'
   neutered: boolean
   size: 'small' | 'medium' | 'large'
@@ -12,12 +12,24 @@ export type Dog = {
   attributes?: {[key: string]: boolean}
 }
 
+export const sizeMap = Object.freeze({
+  small: 'Liten',
+  medium: 'Mellan',
+  large: 'Stor'
+});
+
+export const energyLevelMap = Object.freeze({
+  low: 'Låg',
+  medium: 'Mellan',
+  high: 'Hög'
+});
+
 export const Dogs: Dog[] = [{
   name: 'Thor',
   age: 4,
   description: 'Thor är en lurvig kille med mycket energi ...',
   image: 'https://images.dog.ceo/breeds/rottweiler/n02106550_8776.jpg',
-  race: 'Rottweiler',
+  breed: 'Rottweiler',
   gender: 'male',
   neutered: true,
   energyLevel: 'medium',
@@ -30,7 +42,7 @@ export const Dogs: Dog[] = [{
   age: 2,
   description: 'Kajsa är en mindre hund och mycket trofast',
   image: 'https://images.dog.ceo/breeds/puggle/IMG_143138.jpg',
-  race: 'Puggle',
+  breed: 'Puggle',
   gender: 'female',
   neutered: false,
   energyLevel: 'low',

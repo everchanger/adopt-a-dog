@@ -1,45 +1,30 @@
 import { Image, StyleSheet, Platform, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { ThemedIcon } from '@/components/ThemedIcon';
+
+import { Dogs, sizeMap, energyLevelMap } from '@/constants/Dogs';
 
 export default function HomeScreen() {
+  const firstDog = Dogs[0]
+
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <ThemedView style={styles.titleContainer}>
-          <ThemedText type="title">Welcome!</ThemedText>
-          <HelloWave />
-        </ThemedView>
-        <ThemedView style={styles.stepContainer}>
-          <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-          <ThemedText>
-            Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-            Press{' '}
-            <ThemedText type="defaultSemiBold">
-              {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-            </ThemedText>{' '}
-            to open developer tools.
-          </ThemedText>
-        </ThemedView>
-        <ThemedView style={styles.stepContainer}>
-          <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          <ThemedText>
-            Tap the Explore tab to learn more about what's included in this starter app.
-          </ThemedText>
-        </ThemedView>
-        <ThemedView style={styles.stepContainer}>
-          <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-          <ThemedText>
-            When you're ready, run{' '}
-            <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-            <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-            <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-            <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-          </ThemedText>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView style={styles.container}>
+        <ThemedView style={styles.contentContainer}>
+          <Image source={{uri: firstDog.image}} style={styles.heroImage} />
+          <ThemedView style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8}} >
+            <ThemedText type="title" style={{ alignSelf: 'center'}}>{firstDog.name}</ThemedText>
+            <ThemedIcon size={32} name={firstDog.gender === 'female' ? 'female-outline' : 'male-outline'} />
+          </ThemedView>
+          <ThemedText>Ras: {firstDog.breed}</ThemedText>
+          <ThemedText>Storlek: {sizeMap[firstDog.size]}</ThemedText>
+          <ThemedText>Kastrerad: {firstDog.neutered ? 'Ja' : 'Nej'}</ThemedText>
         </ThemedView>
       </ScrollView>
     </SafeAreaView>
@@ -47,10 +32,20 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  contentContainer: {
+    flexDirection: 'column',
+    borderRadius: 10,
     gap: 8,
+    padding: 8,
+  },
+  container: {
+    padding: 10,
+  },
+  heroImage: {
+    alignSelf: 'center', 
+    width: '100%', 
+    aspectRatio: 1/1,
+    borderRadius: 10,
   },
   stepContainer: {
     gap: 8,
