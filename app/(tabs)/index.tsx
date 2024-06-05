@@ -1,30 +1,43 @@
-import { Image, StyleSheet, Platform, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { Image, StyleSheet, ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { ThemedIcon } from "@/components/ThemedIcon";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { ThemedIcon } from '@/components/ThemedIcon';
-
-import { Dogs, sizeMap, energyLevelMap } from '@/constants/Dogs';
+import { Dogs, sizeMap, energyLevelMap } from "@/constants/Dogs";
 
 export default function HomeScreen() {
-  const firstDog = Dogs[0]
+  const firstDog = Dogs[0];
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={styles.container}>
         <ThemedView style={styles.contentContainer}>
-          <Image source={{uri: firstDog.image}} style={styles.heroImage} />
-          <ThemedView style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8}} >
-            <ThemedText type="title" style={{ alignSelf: 'center'}}>{firstDog.name}</ThemedText>
-            <ThemedIcon size={32} name={firstDog.gender === 'female' ? 'female-outline' : 'male-outline'} />
+          <Image source={{ uri: firstDog.image }} style={styles.heroImage} />
+          <ThemedView
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 8,
+            }}
+          >
+            <ThemedText type="title" style={{ alignSelf: "center" }}>
+              {firstDog.name}
+            </ThemedText>
+            <ThemedIcon
+              size={32}
+              name={
+                firstDog.gender === "female" ? "female-outline" : "male-outline"
+              }
+            />
           </ThemedView>
           <ThemedText>Ras: {firstDog.breed}</ThemedText>
           <ThemedText>Storlek: {sizeMap[firstDog.size]}</ThemedText>
-          <ThemedText>Kastrerad: {firstDog.neutered ? 'Ja' : 'Nej'}</ThemedText>
+          <ThemedText>Kastrerad: {firstDog.neutered ? "Ja" : "Nej"}</ThemedText>
+          <ThemedText>{energyLevelMap[firstDog.energyLevel]}</ThemedText>
+          <ThemedText>{firstDog.description}</ThemedText>
         </ThemedView>
       </ScrollView>
     </SafeAreaView>
@@ -33,7 +46,7 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   contentContainer: {
-    flexDirection: 'column',
+    flexDirection: "column",
     borderRadius: 10,
     gap: 8,
     padding: 8,
@@ -42,9 +55,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   heroImage: {
-    alignSelf: 'center', 
-    width: '100%', 
-    aspectRatio: 1/1,
+    alignSelf: "center",
+    width: "100%",
+    aspectRatio: 1 / 1,
     borderRadius: 10,
   },
   stepContainer: {
@@ -56,6 +69,6 @@ const styles = StyleSheet.create({
     width: 290,
     bottom: 0,
     left: 0,
-    position: 'absolute',
+    position: "absolute",
   },
 });
