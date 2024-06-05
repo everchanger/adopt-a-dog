@@ -34,15 +34,15 @@ export default function HomeScreen() {
             dx: position.x, // x,y are Animated.Value,
           },
         ],
-        { useNativeDriver: false },
+        { useNativeDriver: false }
       ),
       onPanResponderRelease: (evt, gestureState) => {
         Animated.spring(
           position, // Auto-multiplexed
-          { toValue: { x: 0, y: 0 }, useNativeDriver: true }, // Back to zero
+          { toValue: { x: 0, y: 0 }, useNativeDriver: true } // Back to zero
         ).start();
       },
-    }),
+    })
   ).current;
 
   return (
@@ -70,7 +70,7 @@ export default function HomeScreen() {
                         ...position.getTranslateTransform(),
                       ],
                     }
-                  : {},
+                  : styles.blurred,
               ]}
             >
               <DogCard dog={dog} style={{ width: "100%" }} />
@@ -88,7 +88,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     margin: 10,
   },
-  dogWrapper: { position: "absolute", width: "100%", top: 0 },
+  dogWrapper: {
+    position: "absolute",
+    width: "100%",
+    top: 0,
+  },
+  blurred: {
+    filter: "blur(5px)",
+  },
   stepContainer: {
     gap: 8,
     marginBottom: 8,
